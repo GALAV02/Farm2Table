@@ -48,7 +48,7 @@
                         <span class="ml-4 text-lg">Orders</span>
                     </a>
 
-                    <a href="" class="flex items-center w-full transition duration-75 rounded-lg pl-11 py-5 text-white hover:bg-teal-600 p-4">
+                    <a href="{{route('user.index')}}" class="flex items-center w-full transition duration-75 rounded-lg pl-11 py-5 text-white hover:bg-teal-600 p-4">
                         <i class="fas fa-users text-lg"></i>
                         <span class="ml-4 text-lg">Users</span>
                     </a>

@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[PagesController::class, 'index'])->name('home');
@@ -62,6 +63,9 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
     //oder routes
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/orders/status/{orderid}/{status}', [OrderController::class, 'status'])->name('order.status');
+
+    //user routes
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
     //profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

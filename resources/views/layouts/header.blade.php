@@ -16,7 +16,7 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Farm2Table</span>
             </a>
 
-            <form action="{{route('search')}}" method="GET" class="slex gap-2">
+            <form action="{{route('search')}}" method="GET" class="flex gap-2">
                 <input type="text" name="search" placeholder="Search Products" class="border px-2 py-1 rounded-md">
                 <button type="submit" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-1 rounded-md">Search</button>
             </form>
