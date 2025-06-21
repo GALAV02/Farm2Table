@@ -56,8 +56,30 @@
                 </ul>
                 <div class="ml-auto flex items-center font-bold text-white text-md cursor-pointer">
                     @auth
-                    <i class="fa fa-user-circle" style="font-size: 22px; margin-right: 8px;"></i> {{ Auth::user()->name }}
-                    <a href="{{route('mycart')}}" class="ml-5 text-white hover:text-yellow-300"><i class="fa fa-shopping-cart" style="font-size: 20px;"></i></a>
+                    <div class="relative group">
+                        <div class="flex items-center cursor-pointer text-white hover:text-yellow-300">
+                            <i class="fa fa-user-circle mr-2 text-xl"></i>
+                            <span>{{ Auth::user()->name }}</span>
+                        </div>
+                        
+                        <div class="absolute mt-4 w-max bg-teal-500 text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-50">
+                            <a href="{{route('account')}}" class="block px-4 py-2 hover:text-yellow-300" role="menuitem">
+                                My Account
+                            </a>
+                            <a href="{{route('myorder')}}" class="block px-4 py-2 hover:text-yellow-300" role="menuitem">
+                                My Orders
+                            </a>
+                            @if(Auth::user()->role === 'admin')
+                            <a href="{{route('dashboard')}}" class="block px-4 py-2 hover:text-yellow-300" role="menuitem">
+                                Dashboard
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+
+                    <a href="{{route('mycart')}}" class="ml-4 text-white hover:text-yellow-300 relative">
+                        <i class="fa fa-shopping-cart text-lg"></i>
+                    </a>
                     @endauth
                 </div>
             </div>

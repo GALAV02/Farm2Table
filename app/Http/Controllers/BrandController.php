@@ -10,7 +10,8 @@ class BrandController extends Controller
     public function index()
     {
         $brands = brand::orderBy('bid')->get();
-        return view('brands.index',compact('brands'));
+        $nextBid = brand::max('bid') + 1; 
+        return view('brands.index',compact('brands', 'nextBid'));
     }
 
     public function store(Request $request)

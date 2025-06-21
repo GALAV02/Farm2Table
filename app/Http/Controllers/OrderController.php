@@ -25,6 +25,16 @@ class OrderController extends Controller
         if($data['status'] == 'COMPLETE')
         {
             $cart = Cart::find($cartid);
+
+            // Decrease product stock
+            $product = $cart->product;
+            if ($product->stock >= $cart->quantity) {
+                $product->stock -= $cart->quantity;
+                $product->save();
+            } else {
+                return redirect()->route('mycart')->with('error', 'Not enough stock available.');
+            }
+
             $orderdata = [
                 'user_id' => $user_id,
                 'product_id' => $cart->product_id,
@@ -62,5 +72,11 @@ class OrderController extends Controller
             return redirect()->back()->with('success', 'Order status updated successfully.');
         }
         return redirect()->back()->with('error', 'Order not found.');
+    }
+
+    public function myorder()
+    {
+        $orders = Order::where('user_id', Auth::id())->latest()->get();
+        return view('myorder', compact('orders'));
     }
 }

@@ -24,10 +24,31 @@ class PagesController extends Controller
         return view('contact');
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-        $AllProducts = product::latest()->paginate(8);
-        return view('shop', compact('AllProducts'));
+         $query = product::query();
+
+        // Filter by category
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Filter by brand
+        if ($request->filled('brand_id')) {
+            $query->where('brand_id', $request->brand_id);
+        }
+
+        // Sort by price
+        if ($request->filled('sort_price')) {
+            $direction = $request->sort_price === 'asc' ? 'asc' : 'desc';
+            $query->orderBy('price', $direction);
+        }
+
+        $AllProducts = $query->paginate(8);
+        $categories = \App\Models\category::all();
+        $brands = \App\Models\brand::all();
+
+        return view('shop', compact('AllProducts', 'categories', 'brands'));
     }
 
     public function register()
@@ -63,5 +84,5 @@ class PagesController extends Controller
         $search = $request->input('search');
         $products = Product::where('name', 'like', '%' . $search . '%')->latest()->get();
         return view('search', compact('products', 'search'));
-    }
+    }  
 }

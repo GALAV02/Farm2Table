@@ -14,6 +14,51 @@
             </div>
         </div>
 
+          <!-- Sort & Filter Form -->
+        <form method="GET" action="{{ route('shop') }}" class="flex flex-wrap gap-4 justify-center mb-10 items-end bg-white p-4 rounded-xl shadow-md">
+            <div>
+                <label for="category_id" class="block text-teal-700 font-semibold mb-1">
+                    <i class="fas fa-list mr-1"></i>Category
+                </label>
+                <select name="category_id" id="category_id" class="border border-teal-300 rounded px-3 py-2 min-w-[150px]">
+                    <option value="">All Categories</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="brand_id" class="block text-teal-700 font-semibold mb-1">
+                    <i class="fas fa-industry mr-1"></i>Brand
+                </label>
+                <select name="brand_id" id="brand_id" class="border border-teal-300 rounded px-3 py-2 min-w-[150px]">
+                    <option value="">All Brands</option>
+                    @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}" {{ request('brand_id') == $brand->id ? 'selected' : '' }}>
+                            {{ $brand->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="sort_price" class="block text-teal-700 font-semibold mb-1">
+                    <i class="fas fa-sort-amount-down mr-1"></i>Sort by Price
+                </label>
+                <select name="sort_price" id="sort_price" class="border border-teal-300 rounded px-3 py-2 min-w-[150px]">
+                    <option value="">Default</option>
+                    <option value="asc" {{ request('sort_price') == 'asc' ? 'selected' : '' }}>Low to High</option>
+                    <option value="desc" {{ request('sort_price') == 'desc' ? 'selected' : '' }}>High to Low</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-2 rounded shadow transition">
+                    <i class="fas fa-filter mr-2"></i>Apply
+                </button>
+            </div>
+        </form>
+
         <!-- Products Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             @foreach($AllProducts as $product)

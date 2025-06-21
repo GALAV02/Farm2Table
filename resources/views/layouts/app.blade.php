@@ -23,6 +23,11 @@
             <div class="w-56 h-screen bg-teal-500 border-gray-200 dark:bg-teal-700 fixed">
                 <img src="{{asset('img/f2t-c.png')}}" alt="logo" class="w-3/4 mx-auto mt-8">
                 <div class="mt-8 grid">
+                    <a href="{{route('home') }}" class="flex items-center w-full transition duration-75 rounded-lg pl-11 text-white hover:bg-teal-600 p-4">
+                        <i class="fas fa-home text-lg"></i>
+                        <span class="ml-4 text-lg">Main Website</span>
+                    </a>
+
                     <a href="{{route('dashboard')}}" class="flex items-center w-full transition duration-75 rounded-lg pl-11 text-white hover:bg-teal-600 p-4">
                         <i class="fas fa-tachometer-alt text-lg"></i>
                         <span class="ml-4 text-lg">Dashboard</span>

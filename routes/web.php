@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -34,6 +35,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/order/store/{cartid}',[OrderController::class,'store'])->name('order.store');
     Route::get('/contact',[PagesController::class, 'contact'])->name('contact');
     Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
+    Route::get('/myorder', [OrderController::class, 'myorder'])->name('myorder');
+
+    //account routes
+    Route::get('/account',[AccountController::class, 'index'])->name('account');
+    Route::post('/account/update',[AccountController::class, 'update'])->name('account.update');
+    Route::post('/account/destroy',[AccountController::class, 'destroy'])->name('account.destroy');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'isadmin'])->name('dashboard');

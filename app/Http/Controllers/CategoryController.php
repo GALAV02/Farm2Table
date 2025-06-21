@@ -10,7 +10,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = category::orderBy('cid')->get();
-        return view('categories.index',compact('categories'));
+        $nextCid = category::max('cid') + 1; 
+        return view('categories.index',compact('categories', 'nextCid'));
     }
 
     public function store(Request $request)
